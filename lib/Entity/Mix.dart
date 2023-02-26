@@ -2,7 +2,13 @@
 // 混ぜ方は MixType で定義する
 
 class Mix {
-  MixType mixType = MixType.build;
+  MixType mixType;
+
+  //コンストラクタ
+  Mix(this.mixType);
+
+  //ダミーデータを作成
+  static Mix dummyMix = Mix(MixType.build);
 }
 
 // カクテルの混ぜ方を定義する

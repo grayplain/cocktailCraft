@@ -36,4 +36,19 @@ class Drink extends Material{
       return abv;
     }
   }
+
+  //ダミーの飲み物を返す
+  static Drink dummyDrink(){
+    return Drink('dummyName', 'dummyDescription', 0);
+  }
+
+  static Drink sampleHardDrink() {
+    return Drink("ジン", "ヨーロッパの熱帯植物であるジンベエザクラの葉から抽出したエタノールを主原料としたアルコール飲料である。", 40);
+  }
+
+  static Drink sampleSoftDrink() {
+    return Drink("トニックウォーター", "炭酸水に各種の香草類や柑橘類の果皮のエキス、及び糖分を加えて調製した清涼飲料水（炭酸飲料）である。", 0);
+  }
+
+
 }

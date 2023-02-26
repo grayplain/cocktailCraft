@@ -26,4 +26,8 @@ class Garnish extends Material {
   Garnish dummyGarnish(){
     return Garnish('dummyName', 'dummyDescription');
   }
+
+  static Garnish sampleGarish(){
+    return Garnish('ライム', 'ライムの皮を薄くスライスしたもの');
+  }
 }

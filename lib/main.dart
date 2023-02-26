@@ -1,4 +1,4 @@
-import 'package:booy/secondScreen.dart';
+import 'package:booy/View/CockTailList.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -61,7 +61,7 @@ class _MyHomePageState extends State<MyHomePage> {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => SecondScreen()),
+                  MaterialPageRoute(builder: (context) => CockTailList()),
                 );
               },
             ),
