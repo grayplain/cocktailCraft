@@ -7,10 +7,22 @@ import 'package:booy/ViewParts/CockTailListCard.dart';
 
 import 'CockTailDetail.dart';
 
-class CockTailList extends StatelessWidget {
-  //CockTail のリストを受け取る
-  Future<List<CockTail>> cockTailList = CockTail.fetchCockTail();
+class CockTailList extends StatefulWidget {
+  @override
+  _CockTailListState createState() => _CockTailListState();
+}
 
+  class _CockTailListState extends State<CockTailList> {
+    //CockTail のリストを受け取る
+    Future<List<CockTail>> cockTailList = CockTail.fetchCockTail();
+
+    @override
+    void initState() {
+      super.initState();
+      cockTailList = CockTail.fetchCockTail();
+    }
+
+  @override
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -65,8 +77,9 @@ class CockTailList extends StatelessWidget {
               ),
               onPressed: () {
                 cockTailList = CockTail.fetchCockTailBoom();
+                setState(() {});
               },
-              child: const Text('boom'),
+              child: const Text('更新'),
             ),
           ),
 
@@ -84,8 +97,6 @@ class CockTailList extends StatelessWidget {
           ),
         ],
       ),
-
-
     );
   }
 }
