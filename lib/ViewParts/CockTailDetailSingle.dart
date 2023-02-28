@@ -121,18 +121,11 @@ Widget build(BuildContext context) {
                     const SizedBox(height: 30.0),
 
                     const SizedBox(height: 30.0),
-                    Text(
-                      "説明",
-                      style: TextStyle(
-                          fontWeight: FontWeight.w600, fontSize: 14.0),
-                    ),
-                    const SizedBox(height: 10.0),
-                    Text(
-                      cockTail.description,
-                      textAlign: TextAlign.justify,
-                      style: TextStyle(
-                          fontWeight: FontWeight.w300, fontSize: 14.0),
-                    ),
+                    DetailItem(title: "説明", values: [cockTail.description]),
+                    const SizedBox(height: 50.0),
+                    DetailItem(title: "材料", values: cockTail.recipes.map((item) {
+                      return item.getNameAndAmount();
+                    }).toList()),
                     const SizedBox(height: 10.0),
 
                   ],
@@ -159,4 +152,38 @@ Widget build(BuildContext context) {
     ),
   );
 }
+}
+
+
+class DetailItem extends StatelessWidget {
+final String title;
+final List<String> values;
+
+const DetailItem({required this.title, required this.values});
+
+@override
+Widget build(BuildContext context) {
+  return Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+    Text(
+      title,
+      style: TextStyle(
+          fontWeight: FontWeight.w600, fontSize: 18.0),
+    ),
+    const SizedBox(height: 5.0),
+
+    // ここで values の要素を全て取り出し、Text Widget を作成する
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: values.map((item) {
+            return Text(
+              item,
+              style: TextStyle(fontWeight: FontWeight.w300, fontSize: 16.0), // テキストのスタイルを指定
+            );
+          }).toList(),
+        )
+  ]);
+}
+
 }

@@ -17,7 +17,6 @@ class CockTailList extends StatelessWidget {
       appBar: AppBar(
         title: Text('一覧画面'),
       ),
-    //戻るボタン
       body: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
@@ -57,6 +56,18 @@ class CockTailList extends StatelessWidget {
                 return CircularProgressIndicator();
               }
             },
+          ),
+
+          Center(
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                primary: Colors.red,
+              ),
+              onPressed: () {
+                cockTailList = CockTail.fetchCockTailBoom();
+              },
+              child: const Text('boom'),
+            ),
           ),
 
           //戻る!ボタンをBottom に配置する

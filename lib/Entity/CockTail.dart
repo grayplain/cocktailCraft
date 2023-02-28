@@ -24,7 +24,7 @@ class CockTail {
   CockTail(this.name, this.description,this.recipes, this.base, this.mix, this.albRate);
 
   //ダミーデータを作成
-  CockTail dummyCockTail() {
+  static CockTail dummyCockTail() {
     return CockTail('dummyName',
         'dummyDescription',
         [], Drink.dummyDrink(),
@@ -49,6 +49,11 @@ class CockTail {
   //2秒後に Cocktail を返却する
   static Future<List<CockTail>> fetchCockTail() async {
     return Future.delayed(Duration(seconds: 0), () => [sampleCockTail(),sampleCockTail(),sampleCockTail(),sampleCockTail(),sampleCockTail()]);
+  }
+
+  //2秒後に Cocktail を返却する
+  static Future<List<CockTail>> fetchCockTailBoom() async {
+    return Future.delayed(Duration(seconds: 2), () => [dummyCockTail(),dummyCockTail(),dummyCockTail()]);
   }
 
 }

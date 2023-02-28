@@ -17,14 +17,12 @@ class Drink extends Material{
 
   @override
   String getDescription() {
-    // TODO: implement getDescription
-    throw UnimplementedError();
+    return description;
   }
 
   @override
   String getName() {
-    // TODO: implement getName
-    throw UnimplementedError();
+    return name;
   }
 
   double getAbv(){

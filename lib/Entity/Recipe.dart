@@ -23,4 +23,20 @@ class Recipe {
   String getMaterialName() {
     return material.getName();
   }
+
+  String getUnitName() {
+    switch (unit) {
+      case Unit.ml:
+        return "ml";
+      case Unit.g:
+        return "g";
+      case Unit.piece:
+        return "個";
+    }
+  }
+
+  //材料の名前及び分量を取得
+  String getNameAndAmount() {
+    return material.getName() + " " + amount.toString() + getUnitName();
+  }
 }
