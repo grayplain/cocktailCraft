@@ -48,7 +48,7 @@ class CockTail {
 
   //2秒後に Cocktail を返却する
   static Future<List<CockTail>> fetchCockTail() async {
-    return Future.delayed(Duration(seconds: 0), () => [sampleCockTail()]);
+    return Future.delayed(Duration(seconds: 0), () => [sampleCockTail(),sampleCockTail(),sampleCockTail(),sampleCockTail(),sampleCockTail()]);
   }
 
 }

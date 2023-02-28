@@ -1,4 +1,5 @@
 import 'package:booy/Entity/CockTail.dart';
+import 'package:booy/ViewParts/CockTailDetailSingle.dart';
 import 'package:flutter/material.dart';
 
 // カクテルの詳細を表示する StatelessWidget。
@@ -21,13 +22,7 @@ class CockTailDetail extends StatelessWidget {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          //cockTail の name と description を表示する
-          Container(
-            child: Text(cockTail.name),
-          ),
-          Container(
-            child: Text(cockTail.description),
-          ),
+          Expanded(child: CockTailDetailSingle()),
 
           //戻る!ボタンをBottom に配置する
           Center(
