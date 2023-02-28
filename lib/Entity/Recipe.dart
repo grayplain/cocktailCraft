@@ -36,7 +36,7 @@ class Recipe {
   }
 
   //材料の名前及び分量を取得
-  String getNameAndAmount() {
-    return material.getName() + " " + amount.toString() + getUnitName();
+  String getAmountAndUnit() {
+    return amount.toString() + getUnitName();
   }
 }

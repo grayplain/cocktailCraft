@@ -1,6 +1,7 @@
 
 import 'dart:math';
 
+import 'package:booy/Entity/Recipe.dart';
 import 'package:flutter/material.dart';
 
 import '../Entity/CockTail.dart';
@@ -121,11 +122,9 @@ Widget build(BuildContext context) {
                     const SizedBox(height: 30.0),
 
                     const SizedBox(height: 30.0),
-                    DetailItem(title: "説明", values: [cockTail.description]),
+                    DetailDescriptionItem(title: "説明", values: [cockTail.description]),
                     const SizedBox(height: 50.0),
-                    DetailItem(title: "材料", values: cockTail.recipes.map((item) {
-                      return item.getNameAndAmount();
-                    }).toList()),
+                    DetailRecipeItem(title: "材料", values: cockTail.recipes),
                     const SizedBox(height: 10.0),
 
                   ],
@@ -155,11 +154,11 @@ Widget build(BuildContext context) {
 }
 
 
-class DetailItem extends StatelessWidget {
+class DetailDescriptionItem extends StatelessWidget {
 final String title;
 final List<String> values;
 
-const DetailItem({required this.title, required this.values});
+const DetailDescriptionItem({required this.title, required this.values});
 
 @override
 Widget build(BuildContext context) {
@@ -186,4 +185,47 @@ Widget build(BuildContext context) {
   ]);
 }
 
+}
+
+class DetailRecipeItem extends StatelessWidget {
+  final String title;
+  final List<Recipe> values;
+
+  const DetailRecipeItem({required this.title, required this.values});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            title,
+            style: TextStyle(
+                fontWeight: FontWeight.w600, fontSize: 18.0),
+          ),
+          const SizedBox(height: 5.0),
+
+          // ここで values の要素を全て取り出し、Text Widget を作成する
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: values.map((item) {
+              return Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    item.getMaterialName(),
+                    style: TextStyle(fontWeight: FontWeight.w300,
+                        fontSize: 16.0), // テキストのスタイルを指定
+                  ),
+                  Text(
+                    item.getAmountAndUnit(),
+                    style: TextStyle(fontWeight: FontWeight.w300,
+                        fontSize: 16.0), // テキストのスタイルを指定
+                  ),
+                ],
+              );
+            }).toList(),
+          )
+        ]);
+  }
 }
