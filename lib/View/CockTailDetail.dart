@@ -22,17 +22,8 @@ class CockTailDetail extends StatelessWidget {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          Expanded(child: CockTailDetailSingle()),
+          Expanded(child: CockTailDetailSingle(cockTail: cockTail,)),
 
-          //戻る!ボタンをBottom に配置する
-          Center(
-            child: ElevatedButton(
-              child: Text('戻る'),
-              onPressed: () {
-                Navigator.pop(context);
-              },
-            ),
-          ),
         ],
       ),
     );
