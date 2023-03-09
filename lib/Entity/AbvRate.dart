@@ -11,7 +11,9 @@
   5: 30-39%
   6: 40% 以上
  */
-enum AlbRate {
+
+//それぞれの enum に 0 ~ 6 の値を設定する
+enum AbvRate {
   none,
   veryLow,
   low,
@@ -20,3 +22,5 @@ enum AlbRate {
   veryHigh,
   criticallyHigh
 }
+
+

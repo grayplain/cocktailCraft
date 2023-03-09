@@ -1,15 +1,15 @@
 
-import 'dart:math';
-
 import 'package:booy/Entity/Recipe.dart';
+import 'package:booy/ViewParts/AVBRateIcons.dart';
 import 'package:flutter/material.dart';
 
 import '../Entity/CockTail.dart';
+import '../IconData/cocktal_craft__a_v_b_icons.dart';
 
 
 class CockTailDetailSingle extends StatelessWidget {
 static final String path = "lib/src/pages/hotel/details.dart";
-final String image = "assets/hotel/room3.jpg";
+final String image = "images/gintonic.jpeg";
 CockTail cockTail;
 
 // cockTail は CockTailDetail から受け取る
@@ -77,30 +77,10 @@ Widget build(BuildContext context) {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
-                              Row(
-                                children: <Widget>[
-                                  Icon(
-                                    Icons.star,
-                                    color: Colors.purple,
-                                  ),
-                                  Icon(
-                                    Icons.star,
-                                    color: Colors.purple,
-                                  ),
-                                  Icon(
-                                    Icons.star,
-                                    color: Colors.purple,
-                                  ),
-                                  Icon(
-                                    Icons.star,
-                                    color: Colors.purple,
-                                  ),
-                                  Icon(
-                                    Icons.star_border,
-                                    color: Colors.purple,
-                                  ),
-                                ],
-                              ),
+                              AVBRateIcons(abvRate: cockTail.abvRate,
+                                  enableColor: Color.fromRGBO(128, 0, 128, 1.0),
+                                  disableColor: Color.fromRGBO(128, 0, 128, 0.2),
+                                  fontSize: 20),
                               Text.rich(
                                 TextSpan(children: [
                                   WidgetSpan(

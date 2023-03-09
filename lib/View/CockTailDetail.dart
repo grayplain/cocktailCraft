@@ -22,7 +22,7 @@ class CockTailDetail extends StatelessWidget {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          Expanded(child: CockTailDetailSingle(cockTail: cockTail,)),
+          Expanded(child: CockTailDetailSingle(cockTail: cockTail)),
 
         ],
       ),

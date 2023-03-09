@@ -1,10 +1,10 @@
-import 'package:booy/Entity/AlbRate.dart';
+import 'package:booy/Entity/AbvRate.dart';
 import 'package:booy/Entity/Garnish.dart';
 
 import 'Drink.dart';
 import 'Mix.dart';
 import 'Recipe.dart';
-import 'AlbRate.dart';
+import 'AbvRate.dart';
 
 // カクテルを定義する
 // name: カクテルの名前
@@ -18,10 +18,9 @@ class CockTail {
   List<Recipe> recipes;
   Drink base;
   Mix mix;
-  AlbRate albRate;
-
+  AbvRate abvRate;
   //コンストラクタ
-  CockTail(this.name, this.description,this.recipes, this.base, this.mix, this.albRate);
+  CockTail(this.name, this.description,this.recipes, this.base, this.mix, this.abvRate);
 
   //ダミーデータを作成
   static CockTail dummyCockTail() {
@@ -29,7 +28,7 @@ class CockTail {
         'dummyDescription',
         [], Drink.dummyDrink(),
         Mix.dummyMix,
-        AlbRate.none);
+        AbvRate.none);
   }
 
   //サンプルデータ(ジントニック)を作成
@@ -43,7 +42,7 @@ class CockTail {
         ],
         Drink.sampleHardDrink(),
         Mix(MixType.stir),
-        AlbRate.intermediate);
+        AbvRate.intermediate);
   }
 
   //2秒後に Cocktail を返却する
