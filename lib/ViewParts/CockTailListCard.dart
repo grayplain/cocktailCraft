@@ -4,6 +4,8 @@ import 'package:booy/Entity/CockTail.dart';
 import 'package:flutter/material.dart';
 import 'package:booy/Entity/CockTail.dart';
 
+import 'AVBRateIcons.dart';
+
 //カクテルのリストに表示する Card の Widget
 //表示する項目は下記の通り。
 /*
@@ -64,35 +66,10 @@ class CockTailListCard extends StatelessWidget {
                   SizedBox(
                     height: 10,
                   ),
-                  Row(
-                    children: <Widget>[
-                      Icon(
-                        Icons.star,
-                        color: Colors.pink,
-                        size: 18,
-                      ),
-                      Icon(
-                        Icons.star,
-                        color: Colors.pink,
-                        size: 18,
-                      ),
-                      Icon(
-                        Icons.star,
-                        color: Colors.pink,
-                        size: 18,
-                      ),
-                      Icon(
-                        Icons.star,
-                        color: Colors.pink,
-                        size: 18,
-                      ),
-                      Icon(
-                        Icons.star,
-                        color: Colors.pink,
-                        size: 18,
-                      ),
-                    ],
-                  ),
+                  AVBRateIcons(abvRate: cockTail.abvRate,
+                      enableColor: Color.fromRGBO(128, 0, 128, 1.0),
+                      disableColor: Color.fromRGBO(128, 0, 128, 0.2),
+                      fontSize: 18),
                 ],
               ),
             ),

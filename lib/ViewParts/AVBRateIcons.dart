@@ -24,7 +24,7 @@ class AVBRateIcons extends StatelessWidget {
         for(int i = 0; i < 6; i++) ... {
           Icon(
             CocktalCraft_AVB.glass,
-            size: 20,
+            size: fontSize.toDouble(),
             color: abvRate.index <= i
                 ? disableColor
                 : enableColor,
