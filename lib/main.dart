@@ -1,6 +1,6 @@
 import 'package:booy/View/CockTailList.dart';
 import 'package:flutter/material.dart';
-import 'package:booy/Database/DBInitializer.dart';
+import 'package:booy/Database/DatabaseHelper.dart';
 
 void main() {
   runApp(const MyApp());

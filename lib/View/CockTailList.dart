@@ -4,7 +4,6 @@
 import 'package:booy/Entity/CockTail.dart';
 import 'package:flutter/material.dart';
 import 'package:booy/ViewParts/CockTailListCard.dart';
-
 import 'CockTailDetail.dart';
 
 class CockTailList extends StatefulWidget {

@@ -1,5 +1,6 @@
 import 'package:booy/Entity/AbvRate.dart';
 import 'package:booy/Entity/Garnish.dart';
+import '../Database/DatabaseHelper.dart';
 
 import 'Drink.dart';
 import 'Mix.dart';
@@ -55,6 +56,11 @@ class CockTail {
 
   //2秒後に Cocktail を返却する
   static Future<List<CockTail>> fetchCockTail() async {
+
+    DatabaseHelper helper = DatabaseHelper.instance;
+
+    var hoge = await helper.queryAllRows();
+
     return Future.delayed(Duration(seconds: 0), () => [sampleCockTail(),sampleCockTail(),sampleCockTail(),sampleCockTail(),sampleCockTail()]);
   }
 
