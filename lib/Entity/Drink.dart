@@ -8,16 +8,22 @@ import 'package:booy/Entity/Recipe.dart';
 // abv: 飲み物のアルコール度数 (%)
 
 class Drink extends Material{
+  int drinkId;
   String name;
   String description;
   double abv;
 
   //コンストラクタ
-  Drink(this.name, this.description, this.abv);
+  Drink(this.drinkId, this.name, this.description, this.abv);
 
   @override
   String getDescription() {
     return description;
+  }
+
+  @override
+  int getID() {
+    return drinkId;
   }
 
   @override
@@ -37,15 +43,15 @@ class Drink extends Material{
 
   //ダミーの飲み物を返す
   static Drink dummyDrink(){
-    return Drink('dummyName', 'dummyDescription', 0);
+    return Drink(0, 'dummyName', 'dummyDescription', 0);
   }
 
   static Drink sampleHardDrink() {
-    return Drink("ジン", "ヨーロッパの熱帯植物であるジンベエザクラの葉から抽出したエタノールを主原料としたアルコール飲料である。", 40);
+    return Drink(1, "ジン", "ヨーロッパの熱帯植物であるジンベエザクラの葉から抽出したエタノールを主原料としたアルコール飲料である。", 40);
   }
 
   static Drink sampleSoftDrink() {
-    return Drink("トニックウォーター", "炭酸水に各種の香草類や柑橘類の果皮のエキス、及び糖分を加えて調製した清涼飲料水（炭酸飲料）である。", 0);
+    return Drink(2, "トニックウォーター", "炭酸水に各種の香草類や柑橘類の果皮のエキス、及び糖分を加えて調製した清涼飲料水（炭酸飲料）である。", 0);
   }
 
 

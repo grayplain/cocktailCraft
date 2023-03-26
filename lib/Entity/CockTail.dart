@@ -13,6 +13,8 @@ import 'AbvRate.dart';
 //
 
 class CockTail {
+  int cocktailID;
+  String cocktailImageName;
   String name;
   String description;
   List<Recipe> recipes;
@@ -20,11 +22,14 @@ class CockTail {
   Mix mix;
   AbvRate abvRate;
   //コンストラクタ
-  CockTail(this.name, this.description,this.recipes, this.base, this.mix, this.abvRate);
+  CockTail(this.cocktailID,this.cocktailImageName, this.name, this.description,this.recipes, this.base, this.mix, this.abvRate);
 
   //ダミーデータを作成
   static CockTail dummyCockTail() {
-    return CockTail('dummyName',
+    return CockTail(
+        0,
+        'dummyImageName.png',
+        'dummyName',
         'dummyDescription',
         [], Drink.dummyDrink(),
         Mix.dummyMix,
@@ -33,7 +38,10 @@ class CockTail {
 
   //サンプルデータ(ジントニック)を作成
   static CockTail sampleCockTail() {
-    return CockTail('ジントニック',
+    return CockTail(
+        0,
+        'dummyImageName.png',
+        'ジントニック',
         'ジンとトニックウォーターを混ぜたカクテル',
         [
           Recipe(Drink.sampleHardDrink(), 60, Unit.ml),

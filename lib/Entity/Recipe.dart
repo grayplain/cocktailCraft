@@ -1,5 +1,6 @@
 // カクテルに入れる材料を定義
 abstract class Material {
+  int getID();
   String getName();
   String getDescription();
 }
