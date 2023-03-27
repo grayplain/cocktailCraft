@@ -31,12 +31,7 @@ class CockTailListCard extends StatelessWidget {
           Container(
             height: 125,
             width: 110,
-            padding:
-            EdgeInsets.only(left: 0, top: 10, bottom: 70, right: 20),
-              decoration: BoxDecoration(
-                color: Colors.primaries[Random().nextInt(Colors.primaries.length)],
-              ),
-            child: Container()
+            child: Image.asset( "images/" + cockTail.cocktailImageName, fit: BoxFit.cover),
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),

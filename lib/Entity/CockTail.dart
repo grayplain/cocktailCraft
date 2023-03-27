@@ -54,14 +54,34 @@ class CockTail {
         AbvRate.intermediate);
   }
 
+  // DatabaseHelper の queryAllCocktailRows() の結果から、Cocktail オブジェクトを作成する
+  static List<CockTail> createCockTailList(List<Map<String, dynamic>> queryResult) {
+    return List<CockTail>.generate(
+      queryResult.length,
+          (index) {
+        var row = queryResult[index];
+        return CockTail(
+          index,
+          row["id"] + ".png",
+          row["name"],
+          row["description"],
+          [],
+          Drink.dummyDrink(),
+          Mix.dummyMix,
+          AbvRate.none,
+        );
+      },
+    );
+  }
+
+
+
   //2秒後に Cocktail を返却する
   static Future<List<CockTail>> fetchCockTail() async {
-
     DatabaseHelper helper = DatabaseHelper.instance;
+    var queryResult = await helper.queryAllCocktailRows();
 
-    var hoge = await helper.queryAllRows();
-
-    return Future.delayed(Duration(seconds: 0), () => [sampleCockTail(),sampleCockTail(),sampleCockTail(),sampleCockTail(),sampleCockTail()]);
+    return CockTail.createCockTailList(queryResult);
   }
 
   //2秒後に Cocktail を返却する

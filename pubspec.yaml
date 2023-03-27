@@ -60,9 +60,12 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
+
+  # images に入っている全ての png 画像をアセットとして追加する
   assets:
     - images/
     - assets/
+
 #      - /CockTailMaster.db
   #   - images/a_dot_ham.jpeg
 

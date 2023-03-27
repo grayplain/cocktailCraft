@@ -10,11 +10,11 @@ class DatabaseHelper {
   static final _databaseVersion = 1; // スキーマのバージョン指定
 
   static final drinkTable = 'Drink';
-
-  static final columnId = '_id';
-  static final columnName = 'name';
-  static final columnDescription = 'description';
-  static final columnAbv = 'abv';
+  static final cocktail_jp_Table = 'Cocktail_jp';
+  // static final columnId = '_id';
+  // static final columnName = 'name';
+  // static final columnDescription = 'description';
+  // static final columnAbv = 'abv';
 
   // DatabaseHelper クラスを定義
   DatabaseHelper._privateConstructor();
@@ -60,12 +60,10 @@ class DatabaseHelper {
 
 
 
-  // データベースからデータを取得するメソッドを追加する
-  Future<List<Map<String, dynamic>>> queryAllRows() async {
+  Future<List<Map<String, dynamic>>> queryAllCocktailRows() async {
     Database? db = await instance.database;
-    return await db!.query(drinkTable);
+    return await db!.query(cocktail_jp_Table);
   }
-
 
 }
 
