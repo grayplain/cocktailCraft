@@ -2,7 +2,6 @@ import 'dart:math';
 
 import 'package:booy/Entity/CockTail.dart';
 import 'package:flutter/material.dart';
-import 'package:booy/Entity/CockTail.dart';
 
 import 'AVBRateIcons.dart';
 
@@ -31,7 +30,7 @@ class CockTailListCard extends StatelessWidget {
           Container(
             height: 125,
             width: 110,
-            child: Image.asset( "images/" + cockTail.cocktailImageName, fit: BoxFit.cover),
+            child: Image.asset( "images/" + cockTail.cocktailImageName, fit: BoxFit.scaleDown),
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),

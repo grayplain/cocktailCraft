@@ -21,7 +21,7 @@ class AVBRateIcons extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        for(int i = 0; i < 6; i++) ... {
+        for(int i = 0; i < 5; i++) ... {
           Icon(
             CocktalCraft_AVB.glass,
             size: fontSize.toDouble(),

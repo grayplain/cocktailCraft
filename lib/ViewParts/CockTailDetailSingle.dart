@@ -1,4 +1,5 @@
 
+import 'package:booy/Entity/AbvRate.dart';
 import 'package:booy/Entity/Recipe.dart';
 import 'package:booy/ViewParts/AVBRateIcons.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +10,6 @@ import '../IconData/cocktal_craft__a_v_b_icons.dart';
 
 class CockTailDetailSingle extends StatelessWidget {
 static final String path = "lib/src/pages/hotel/details.dart";
-final String image = "images/gintonic.jpeg";
 CockTail cockTail;
 
 // cockTail は CockTailDetail から受け取る
@@ -22,8 +22,9 @@ Widget build(BuildContext context) {
       children: <Widget>[
         Container(
             foregroundDecoration: BoxDecoration(color: Colors.black26),
+            alignment: Alignment.center,
             height: 400,
-            child: Image.asset(image, fit: BoxFit.cover)),
+            child: Image.asset("images/" + cockTail.cocktailImageName, fit: BoxFit.cover)),
         SingleChildScrollView(
           padding: const EdgeInsets.only(top: 16.0, bottom: 20.0),
           child: Column(
@@ -81,19 +82,12 @@ Widget build(BuildContext context) {
                                   enableColor: Color.fromRGBO(128, 0, 128, 1.0),
                                   disableColor: Color.fromRGBO(128, 0, 128, 0.2),
                                   fontSize: 20),
-                              Text.rich(
-                                TextSpan(children: [
-                                  WidgetSpan(
-                                      child: Icon(
-                                        Icons.location_on,
-                                        size: 16.0,
-                                        color: Colors.grey,
-                                      )),
-                                  TextSpan(text: "8 km to centrum")
-                                ]),
+                              Text(
+                                getAbvRateString(cockTail.abvRate),
                                 style: TextStyle(
-                                    color: Colors.grey, fontSize: 12.0),
-                              )
+                                    color: Colors.grey,
+                                    fontWeight: FontWeight.w200),
+                              ),
                             ],
                           ),
                         ),

@@ -68,7 +68,7 @@ class CockTail {
           [],
           Drink.dummyDrink(),
           Mix.dummyMix,
-          AbvRate.none,
+          getAbvRate(row["abv"])
         );
       },
     );
