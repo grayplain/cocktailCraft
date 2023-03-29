@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:booy/Entity/Favorite.dart';
 import 'package:flutter/services.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path_provider/path_provider.dart';
@@ -96,26 +97,16 @@ class DatabaseHelper {
     return await db!.rawQuery(sql);
   }
 
-  Future<int> insertFavorite(String cocktailID) async {
+  Future<void> insertOrUpdateFavorite(String cocktailID, bool isFavorite) async {
     Database? db = await instance.database;
     Map<String, dynamic> favoriteData = {
       'cocktailID': cocktailID,
-      'isFavorite': 1,
+      'isFavorite': isFavorite ? 1 : 0,
     };
 
-    int insertedId = await db!.insert('Favorite', favoriteData);
-    return insertedId;
+    db!.insert(favorite_Table, favoriteData, conflictAlgorithm: ConflictAlgorithm.replace);
   }
 
-  Future<int> deleteFavorite(String favoriteCocktailId) async {
-    Database? db = await instance.database;
-    int deletedCount = await db!.delete(
-      'Favorite',
-      where: 'cocktailID = ?',
-      whereArgs: [favoriteCocktailId],
-    );
-    return deletedCount;
-  }
 
 }
 

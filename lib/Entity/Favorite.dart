@@ -51,15 +51,9 @@ class Favorite {
     return Favorite(favoriteID, false);
   }
 
-  // DatabaseHelper の deleteFavoriteRow() を呼び出す
-  static Future<int> deleteFavorite(String favoriteID) async {
-    DatabaseHelper helper = DatabaseHelper.instance;
-    return await helper.deleteFavorite(favoriteID);
-  }
-
   // DatabaseHelper の insertFavoriteRow() を呼び出す
-  static Future<int> insertFavorite(String favoriteID) async {
+  static Future<void> updateFavorite(String favoriteID, bool isFavorite) async {
     DatabaseHelper helper = DatabaseHelper.instance;
-    return await helper.insertFavorite(favoriteID);
+    await helper.insertOrUpdateFavorite(favoriteID, isFavorite);
   }
 }
