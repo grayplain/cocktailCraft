@@ -53,9 +53,18 @@ class CockTailListCard extends StatelessWidget {
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                   ),
-                  Text(
-                    cockTail.base.name,
-                    style: TextStyle(fontSize: 14, color: Colors.black87),
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 1.0,
+                      horizontal: 10.0,
+                    ),
+                    decoration: BoxDecoration(
+                        color: Colors.grey.shade400,
+                        borderRadius: BorderRadius.circular(10.0)),
+                    child: Text(
+                      cockTail.base.name,
+                      style: TextStyle(color: Colors.white, fontSize: 12.0),
+                    ),
                   ),
                   SizedBox(
                     height: 10,

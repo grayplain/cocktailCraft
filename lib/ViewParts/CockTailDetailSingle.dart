@@ -53,7 +53,7 @@ Widget build(BuildContext context) {
                         color: Colors.grey,
                         borderRadius: BorderRadius.circular(20.0)),
                     child: Text(
-                      "8.4/85 reviews",
+                      cockTail.base.name,
                       style: TextStyle(color: Colors.white, fontSize: 13.0),
                     ),
                   ),

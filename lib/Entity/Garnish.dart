@@ -7,7 +7,7 @@
 import 'Recipe.dart';
 
 class Garnish extends Material {
-  int garnishId;
+  String garnishId;
   String name;
   String description;
 
@@ -15,7 +15,7 @@ class Garnish extends Material {
   Garnish(this.garnishId, this.name, this.description);
 
   @override
-  int getID() {
+  String getID() {
     return garnishId;
   }
 
@@ -30,10 +30,10 @@ class Garnish extends Material {
   }
 
   Garnish dummyGarnish(){
-    return Garnish(0, 'dummyName', 'dummyDescription');
+    return Garnish("0", 'dummyName', 'dummyDescription');
   }
 
   static Garnish sampleGarish(){
-    return Garnish(1, 'ライム', 'ライムの皮を薄くスライスしたもの');
+    return Garnish("1", 'ライム', 'ライムの皮を薄くスライスしたもの');
   }
 }

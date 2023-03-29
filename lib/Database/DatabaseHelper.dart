@@ -10,7 +10,10 @@ class DatabaseHelper {
   static final _databaseVersion = 1; // スキーマのバージョン指定
 
   static final drinkTable = 'Drink';
-  static final cocktail_jp_Table = 'Cocktail_jp';
+  static final cocktail_jp_Table = 'cocktail_jp';
+  static final material_jp_Table = 'material_jp';
+
+
   // static final columnId = '_id';
   // static final columnName = 'name';
   // static final columnDescription = 'description';
@@ -59,10 +62,21 @@ class DatabaseHelper {
   }
 
 
-
+  //DBからカクテル情報を全て取得する
   Future<List<Map<String, dynamic>>> queryAllCocktailRows() async {
     Database? db = await instance.database;
-    return await db!.query(cocktail_jp_Table);
+    final String sql = '''
+    SELECT c.*, b.name AS base_name
+    FROM Cocktail_jp AS c
+    JOIN material_jp AS b ON c.base = b.id;
+    ''';
+    return await db!.rawQuery(sql);
+  }
+
+  //DBからカクテル情報を全て取得する
+  Future<List<Map<String, dynamic>>> queryAllMaterialRows() async {
+    Database? db = await instance.database;
+    return await db!.query(material_jp_Table);
   }
 
 }

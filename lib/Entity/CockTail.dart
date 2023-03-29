@@ -3,7 +3,6 @@ import 'package:booy/Entity/Garnish.dart';
 import '../Database/DatabaseHelper.dart';
 
 import 'Drink.dart';
-import 'Mix.dart';
 import 'Recipe.dart';
 import 'AbvRate.dart';
 
@@ -20,10 +19,10 @@ class CockTail {
   String description;
   List<Recipe> recipes;
   Drink base;
-  Mix mix;
+  String skill;
   AbvRate abvRate;
   //コンストラクタ
-  CockTail(this.cocktailID,this.cocktailImageName, this.name, this.description,this.recipes, this.base, this.mix, this.abvRate);
+  CockTail(this.cocktailID,this.cocktailImageName, this.name, this.description,this.recipes, this.base, this.skill, this.abvRate);
 
   //ダミーデータを作成
   static CockTail dummyCockTail() {
@@ -33,7 +32,7 @@ class CockTail {
         'dummyName',
         'dummyDescription',
         [], Drink.dummyDrink(),
-        Mix.dummyMix,
+        "skill",
         AbvRate.none);
   }
 
@@ -50,7 +49,7 @@ class CockTail {
           Recipe(Garnish.sampleGarish(), 1, Unit.piece)
         ],
         Drink.sampleHardDrink(),
-        Mix(MixType.stir),
+        "skill",
         AbvRate.intermediate);
   }
 
@@ -66,8 +65,8 @@ class CockTail {
           row["name"],
           row["description"],
           [],
-          Drink.dummyDrink(),
-          Mix.dummyMix,
+            Drink(row["base"], row["base_name"], "description", 0), //ベースの説明は利用しないので、設定していない。
+            row["mix"],
           getAbvRate(row["abv"])
         );
       },
@@ -75,8 +74,7 @@ class CockTail {
   }
 
 
-
-  //2秒後に Cocktail を返却する
+  // DatabaseHelper の queryAllCocktailRows() の結果から、Cocktail オブジェクトを作成する
   static Future<List<CockTail>> fetchCockTail() async {
     DatabaseHelper helper = DatabaseHelper.instance;
     var queryResult = await helper.queryAllCocktailRows();
