@@ -15,9 +15,9 @@ class CockTailDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('詳細画面'),
-      ),
+      // appBar: AppBar(
+      //   title: Text('詳細画面'),
+      // ),
       //戻るボタン
       body: Column(
         mainAxisAlignment: MainAxisAlignment.end,

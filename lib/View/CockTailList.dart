@@ -25,12 +25,15 @@ class CockTailList extends StatefulWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('一覧画面'),
-      ),
+      // appBar: AppBar(
+      //   title: Text('一覧画面'),
+      //   backgroundColor: Colors.red
+      // ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
+          SizedBox(height: 20),
+
           FutureBuilder(
             future: cockTailList,
             builder: (BuildContext context, AsyncSnapshot snapshot) {
@@ -69,31 +72,18 @@ class CockTailList extends StatefulWidget {
             },
           ),
 
-          Center(
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                primary: Colors.red,
-              ),
-              onPressed: () {
-                cockTailList = CockTail.fetchCockTailBoom();
-                setState(() {});
-              },
-              child: const Text('更新'),
-            ),
-          ),
-
-          //戻る!ボタンをBottom に配置する
-          Center(
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                primary: Colors.red,
-              ),
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              child: const Text('戻る!'),
-            ),
-          ),
+          // Center(
+          //   child: ElevatedButton(
+          //     style: ElevatedButton.styleFrom(
+          //       primary: Colors.red,
+          //     ),
+          //     onPressed: () {
+          //       cockTailList = CockTail.fetchCockTailBoom();
+          //       setState(() {});
+          //     },
+          //     child: const Text('更新'),
+          //   ),
+          // ),
         ],
       ),
     );
