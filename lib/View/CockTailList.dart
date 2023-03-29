@@ -50,6 +50,7 @@ class CockTailList extends StatefulWidget {
                         return GestureDetector(
                           child: CockTailListCard(
                             cockTail: snapshot.data[index],
+                            isFavorite: false,
                           ),
                           onTap: () {
                             // CockTailDetail に遷移する

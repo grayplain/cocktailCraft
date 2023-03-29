@@ -12,6 +12,7 @@ class DatabaseHelper {
   static final drinkTable = 'Drink';
   static final cocktail_jp_Table = 'cocktail_jp';
   static final material_jp_Table = 'material_jp';
+  static final favorite_Table = 'favorite';
 
 
   // static final columnId = '_id';
@@ -61,7 +62,6 @@ class DatabaseHelper {
     return await openDatabase(path, version: _databaseVersion);
   }
 
-
   //DBからカクテル情報を全て取得する
   Future<List<Map<String, dynamic>>> queryAllCocktailRows() async {
     Database? db = await instance.database;
@@ -77,6 +77,44 @@ class DatabaseHelper {
   Future<List<Map<String, dynamic>>> queryAllMaterialRows() async {
     Database? db = await instance.database;
     return await db!.query(material_jp_Table);
+  }
+
+  //DBからお気に入り情報を全て取得する
+  Future<List<Map<String, dynamic>>> queryAllFavoriteRows() async {
+    Database? db = await instance.database;
+    return await db!.query(favorite_Table);
+  }
+
+  //DBからお気に入りのカクテル情報を取得する
+  Future<List<Map<String, dynamic>>> queryFavoriteCocktailRows() async {
+    Database? db = await instance.database;
+    final String sql = '''
+    SELECT c.*, b.name AS base_name
+    FROM Cocktail_jp AS c
+    JOIN material_jp AS b ON c.base = b.id;
+    ''';
+    return await db!.rawQuery(sql);
+  }
+
+  Future<int> insertFavorite(int cocktailID) async {
+    Database? db = await instance.database;
+    Map<String, dynamic> favoriteData = {
+      'cocktailID': cocktailID,
+      'isFavorite': 1,
+    };
+
+    int insertedId = await db!.insert('Favorite', favoriteData);
+    return insertedId;
+  }
+
+  Future<int> deleteFavorite(int favoriteCocktailId) async {
+    Database? db = await instance.database;
+    int deletedCount = await db!.delete(
+      'Favorite',
+      where: 'cocktailID = ?',
+      whereArgs: [favoriteCocktailId],
+    );
+    return deletedCount;
   }
 
 }

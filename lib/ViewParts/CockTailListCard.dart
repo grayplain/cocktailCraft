@@ -1,3 +1,4 @@
+import 'dart:ffi';
 import 'dart:math';
 
 import 'package:booy/Entity/CockTail.dart';
@@ -18,8 +19,9 @@ import 'AVBRateIcons.dart';
  */
 class CockTailListCard extends StatelessWidget {
   final CockTail cockTail;
+  bool isFavorite;
 
-  const CockTailListCard({required this.cockTail});
+  CockTailListCard({required this.cockTail, required this.isFavorite});
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +37,7 @@ class CockTailListCard extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: SizedBox(
-              width: MediaQuery.of(context).size.width - 180,
+              width: MediaQuery.of(context).size.width - 200,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -77,7 +79,19 @@ class CockTailListCard extends StatelessWidget {
               ),
             ),
           ),
-      Icon(Icons.favorite_border, color: Colors.grey.shade400, size: 25,),
+
+      // Icon をタップすることで、 Icons.favorite_round に切り替わる
+      //  Icons.favorite_round の状態で Icon をタップすることで、Icons.favorite_borderに切り替わる
+          IconButton(
+            iconSize: 25,
+            padding: EdgeInsets.all(0),
+            color: Colors.black,
+            icon: Icon(isFavorite ? Icons.favorite_rounded : Icons.favorite_border),
+            onPressed: () {
+              isFavorite = !isFavorite;
+            },
+          )
+
         ],
       ),
     );
