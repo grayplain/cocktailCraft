@@ -99,6 +99,8 @@ Widget build(BuildContext context) {
                     DetailDescriptionItem(title: "説明", values: [cockTail.description]),
                     const SizedBox(height: 50.0),
                     DetailRecipeItem(title: "材料", values: cockTail.recipes),
+                    const SizedBox(height: 50.0),
+                    DetailSkillItem(title: "作り方", value: cockTail.skill),
                     const SizedBox(height: 10.0),
 
                   ],
@@ -199,6 +201,35 @@ class DetailRecipeItem extends StatelessWidget {
                 ],
               );
             }).toList(),
+          )
+        ]);
+  }
+}
+
+
+class DetailSkillItem extends StatelessWidget {
+  final String title;
+  final String value;
+
+  const DetailSkillItem({required this.title, required this.value});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            title,
+            style: TextStyle(
+                fontWeight: FontWeight.w600, fontSize: 18.0),
+          ),
+          const SizedBox(height: 5.0),
+
+          // ここで values の要素を全て取り出し、Text Widget を作成する
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [Text(value,
+                style: TextStyle(fontWeight: FontWeight.w300, fontSize: 16.0))],
           )
         ]);
   }
