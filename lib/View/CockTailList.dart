@@ -25,15 +25,15 @@ class CockTailList extends StatefulWidget {
 
     //お気に入りボタンを押した時の処理
     //引数に cocktailID を渡すことで、お気に入りボタンを押したカードのお気に入り状態を変更する
-  void favoriteCallback(String cocktailID) {
-    setState(() {
-      //favoriteList を更新する
-      Favorite.deleteFavorite(cocktailID);
-      Favorite.insertFavorite(cocktailID);
-      // super.setState(() {
-      //   favoriteList = Favorite.fetchFavorite();
-      // });
-    });
+  void favoriteCallback(String cocktailID) async {
+      var favList = await favoriteList;
+      if(Favorite.getFavorite(favList, cocktailID).isFavorite) {
+        //お気に入り登録済みの場合は、お気に入りを解除する
+        Favorite.deleteFavorite(cocktailID);
+      } else {
+        //お気に入り未登録の場合は、お気に入りを登録する
+        Favorite.insertFavorite(cocktailID);
+      }
   }
 
   @override

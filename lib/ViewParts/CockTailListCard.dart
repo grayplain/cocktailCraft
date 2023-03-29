@@ -83,10 +83,9 @@ class _CockTailListCardState extends State<CockTailListCard> {
             color: Colors.black,
             icon: Icon(widget.isFavorite.isFavorite ? Icons.favorite_rounded : Icons.favorite_border),
             onPressed: () {
+              widget.favoriteCallback(widget.cockTail.cocktailID);
               setState(() {
                 widget.isFavorite.isFavorite = !widget.isFavorite.isFavorite;
-                widget.favoriteCallback(widget.cockTail.cocktailID);
-
               });
             },
           )
