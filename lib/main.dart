@@ -2,40 +2,39 @@ import 'package:booy/View/CockTailList.dart';
 import 'package:flutter/material.dart';
 import 'package:booy/Database/DatabaseHelper.dart';
 
+import 'package:flutter/material.dart';
+
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: HomeScreen(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
-  final String title;
-
+class HomeScreen extends StatefulWidget {
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  _HomeScreenState createState() => _HomeScreenState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+class _HomeScreenState extends State<HomeScreen> {
+  int _selectedIndex = 0;
 
-  void _incrementCounter() {
+  static List<Widget> _widgetOptions = <Widget>[
+    CockTailList(),
+    Text('お気に入り'),
+    Text('バーテンダー'),
+    Text('設定'),
+  ];
+
+  void _onItemTapped(int index) {
     setState(() {
-      _counter++;
+      _selectedIndex = index;
     });
   }
 
@@ -43,49 +42,36 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       // appBar: AppBar(
-      //   title: Text(widget.title),
+      //   title: const Text('Flutter BottomNavigationBar'),
       // ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            //画面一番下に SecondScreen に遷移するボタンを配置する
-            //ボタンを押すと、SecondScreen に遷移する
-            //遷移後は、画面一番下のボタンの名前が「戻る!」に変わる
-            //ボタンを押すと、1つ前の画面に戻る
-            //戻った後は、画面一番下のボタンの名前が「遷移する!」に戻る
-            //ボタンの色は、赤い色である
-            //遷移するボタン
-            RaisedButton(
-              child: Text('遷移する!'),
-              color: Colors.red,
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => CockTailList()),
-                );
-              },
-            ),
-
-            //ボタンの色は、赤い色である
-            //色は赤い色で、ボタン名は「遷移する!」
-
-
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
-        ),
+        child: _widgetOptions.elementAt(_selectedIndex),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.circle),
+            label: 'カクテル',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.circle),
+            label: 'お気に入り',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.circle),
+            label: 'バーテンダー',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.circle),
+            label: '設定',
+          ),
+        ],
+        currentIndex: _selectedIndex,
+        selectedItemColor: Colors.blue,
+        unselectedItemColor: Colors.grey,
+        onTap: _onItemTapped,
+        type: BottomNavigationBarType.fixed,
+      ),
     );
   }
 }
