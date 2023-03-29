@@ -35,7 +35,7 @@ class CockTailListCard extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: SizedBox(
-              width: MediaQuery.of(context).size.width - 150,
+              width: MediaQuery.of(context).size.width - 180,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -76,7 +76,8 @@ class CockTailListCard extends StatelessWidget {
                 ],
               ),
             ),
-          )
+          ),
+      Icon(Icons.favorite_border, color: Colors.grey.shade400, size: 25,),
         ],
       ),
     );
