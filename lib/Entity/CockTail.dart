@@ -13,7 +13,7 @@ import 'AbvRate.dart';
 //
 
 class CockTail {
-  int cocktailID;
+  String cocktailID;
   String cocktailImageName;
   String name;
   String description;
@@ -27,7 +27,7 @@ class CockTail {
   //ダミーデータを作成
   static CockTail dummyCockTail() {
     return CockTail(
-        0,
+        "0",
         'dummyImageName.png',
         'dummyName',
         'dummyDescription',
@@ -39,7 +39,7 @@ class CockTail {
   //サンプルデータ(ジントニック)を作成
   static CockTail sampleCockTail() {
     return CockTail(
-        0,
+        "0",
         'dummyImageName.png',
         'ジントニック',
         'ジンとトニックウォーターを混ぜたカクテル',
@@ -60,7 +60,7 @@ class CockTail {
           (index) {
         var row = queryResult[index];
         return CockTail(
-          index,
+            row["id"],
           row["id"] + ".png",
           row["name"],
           row["description"],

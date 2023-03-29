@@ -12,7 +12,7 @@ class DatabaseHelper {
   static final drinkTable = 'Drink';
   static final cocktail_jp_Table = 'cocktail_jp';
   static final material_jp_Table = 'material_jp';
-  static final favorite_Table = 'favorite';
+  static final favorite_Table = 'Favorite';
 
 
   // static final columnId = '_id';
@@ -96,7 +96,7 @@ class DatabaseHelper {
     return await db!.rawQuery(sql);
   }
 
-  Future<int> insertFavorite(int cocktailID) async {
+  Future<int> insertFavorite(String cocktailID) async {
     Database? db = await instance.database;
     Map<String, dynamic> favoriteData = {
       'cocktailID': cocktailID,
@@ -107,7 +107,7 @@ class DatabaseHelper {
     return insertedId;
   }
 
-  Future<int> deleteFavorite(int favoriteCocktailId) async {
+  Future<int> deleteFavorite(String favoriteCocktailId) async {
     Database? db = await instance.database;
     int deletedCount = await db!.delete(
       'Favorite',
