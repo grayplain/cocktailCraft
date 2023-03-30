@@ -82,6 +82,13 @@ class CockTail {
     return CockTail.createCockTailList(queryResult);
   }
 
+  static Future<List<CockTail>> fetchFavoriteCockTail() async {
+    DatabaseHelper helper = DatabaseHelper.instance;
+    var queryResult = await helper.queryFavoriteCocktailRows();
+
+    return CockTail.createCockTailList(queryResult);
+  }
+
   //2秒後に Cocktail を返却する
   static Future<List<CockTail>> fetchCockTailBoom() async {
     return Future.delayed(Duration(seconds: 2), () => [dummyCockTail(),dummyCockTail(),dummyCockTail()]);

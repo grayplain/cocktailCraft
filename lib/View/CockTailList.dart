@@ -7,26 +7,41 @@ import 'package:flutter/material.dart';
 import 'package:booy/ViewParts/CockTailListCard.dart';
 import 'CockTailDetail.dart';
 
+//CockTailListを呼び出すときに、isFavorite を引数として指定できるようにする
 class CockTailList extends StatefulWidget {
+  //初期画面表示時、cocktailList の取得方法を変更するフラグ
+  bool isFavorite = false;
+  //コンストラクタ
+  CockTailList({Key? key, required this.isFavorite}) : super(key: key);
+
   @override
   _CockTailListState createState() => _CockTailListState();
 }
 
-  class _CockTailListState extends State<CockTailList> {
-    //CockTail のリストを受け取る
-    Future<List<CockTail>> cockTailList = CockTail.fetchCockTail();
-    Future<List<Favorite>> favoriteList = Favorite.fetchFavorite();
+class _CockTailListState extends State<CockTailList> {
+  //CockTail のリストを受け取る
+  // Future<List<CockTail>> cockTailList = CockTail.fetchCockTail();
+  // Future<List<Favorite>> favoriteList = Favorite.fetchFavorite();
+  late Future<List<CockTail>> cockTailList;
+  late Future<List<Favorite>> favoriteList;
 
-    @override
-    void initState() {
-      super.initState();
+  @override
+  void initState() {
+    super.initState();
+
+    if (widget.isFavorite) {
+      cockTailList = CockTail.fetchFavoriteCockTail();
+      favoriteList = Favorite.fetchFavorite();
+    } else {
       cockTailList = CockTail.fetchCockTail();
+      favoriteList = Favorite.fetchFavorite();
     }
+  }
 
-    //お気に入りボタンを押した時の処理
-    //引数に cocktailID を渡すことで、お気に入りボタンを押したカードのお気に入り状態を変更する
+  //お気に入りボタンを押した時の処理
+  //引数に cocktailID を渡すことで、お気に入りボタンを押したカードのお気に入り状態を変更する
   void favoriteCallback(String cocktailID, bool isFavorite) async {
-      Favorite.updateFavorite(cocktailID, isFavorite);
+    Favorite.updateFavorite(cocktailID, isFavorite);
   }
 
   @override
@@ -40,11 +55,9 @@ class CockTailList extends StatefulWidget {
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           SizedBox(height: 20),
-
           FutureBuilder(
-            future: Future.wait([cockTailList,favoriteList]),
+            future: Future.wait([cockTailList, favoriteList]),
             builder: (BuildContext context, AsyncSnapshot snapshot) {
-
               if (snapshot.connectionState == ConnectionState.done) {
                 if (!snapshot.hasData) {
                   return const CircularProgressIndicator();
@@ -52,6 +65,21 @@ class CockTailList extends StatefulWidget {
                 final List<dynamic> data = snapshot.data!;
                 final cockTailList = data[0] as List<CockTail>;
                 final favoriteList = data[1] as List<Favorite>;
+
+                if (cockTailList.length == 0) {
+                  //画面上部の中央に Text を表示する
+                  return Container(
+                    alignment: Alignment.center,
+                    height: 500,
+                    child: Text(
+                      "お気に入りがありません",
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  );
+                }
 
                 return Expanded(
                   // height: 400,
@@ -62,7 +90,8 @@ class CockTailList extends StatefulWidget {
                         return GestureDetector(
                           child: CockTailListCard(
                             cockTail: cockTailList[index],
-                            isFavorite: Favorite.getFavorite(favoriteList, cockTailList[index].cocktailID),
+                            isFavorite: Favorite.getFavorite(
+                                favoriteList, cockTailList[index].cocktailID),
                             favoriteCallback: favoriteCallback,
                           ),
                           onTap: () {
@@ -71,7 +100,8 @@ class CockTailList extends StatefulWidget {
                               context,
                               MaterialPageRoute(
                                 builder: (context) => CockTailDetail(
-                                  cockTail: cockTailList[index], key: const Key("cockTailDetail"),
+                                  cockTail: cockTailList[index],
+                                  key: const Key("cockTailDetail"),
                                 ),
                               ),
                             );

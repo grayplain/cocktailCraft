@@ -6,7 +6,6 @@ import 'package:sqflite/sqflite.dart';
 import 'package:path_provider/path_provider.dart';
 
 class DatabaseHelper {
-
   static final _databaseName = "MyDatabase.db"; // DB名
   static final _databaseVersion = 1; // スキーマのバージョン指定
 
@@ -14,7 +13,6 @@ class DatabaseHelper {
   static final cocktail_jp_Table = 'cocktail_jp';
   static final material_jp_Table = 'material_jp';
   static final favorite_Table = 'Favorite';
-
 
   // static final columnId = '_id';
   // static final columnName = 'name';
@@ -54,7 +52,8 @@ class DatabaseHelper {
     if (!await File(path).exists()) {
       // If not, copy the pre-populated database file from the assets
       ByteData data = await rootBundle.load('assets/CockTailMaster.db');
-      List<int> bytes = data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
+      List<int> bytes =
+          data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
 
       // Save the pre-populated database file to the application documents directory
       await File(path).writeAsBytes(bytes, flush: true);
@@ -92,21 +91,20 @@ class DatabaseHelper {
     final String sql = '''
     SELECT c.*, b.name AS base_name
     FROM Cocktail_jp AS c
-    JOIN material_jp AS b ON c.base = b.id;
+    JOIN material_jp AS b ON c.base = b.id and c.id in (select cocktailID from Favorite where isFavorite = 1);
     ''';
     return await db!.rawQuery(sql);
   }
 
-  Future<void> insertOrUpdateFavorite(String cocktailID, bool isFavorite) async {
+  Future<void> insertOrUpdateFavorite(
+      String cocktailID, bool isFavorite) async {
     Database? db = await instance.database;
     Map<String, dynamic> favoriteData = {
       'cocktailID': cocktailID,
       'isFavorite': isFavorite ? 1 : 0,
     };
 
-    db!.insert(favorite_Table, favoriteData, conflictAlgorithm: ConflictAlgorithm.replace);
+    db!.insert(favorite_Table, favoriteData,
+        conflictAlgorithm: ConflictAlgorithm.replace);
   }
-
-
 }
-

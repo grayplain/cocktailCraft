@@ -1,8 +1,5 @@
 import 'package:booy/View/CockTailList.dart';
 import 'package:flutter/material.dart';
-import 'package:booy/Database/DatabaseHelper.dart';
-
-import 'package:flutter/material.dart';
 
 void main() {
   runApp(MyApp());
@@ -26,8 +23,8 @@ class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
 
   static List<Widget> _widgetOptions = <Widget>[
-    CockTailList(),
-    Text('お気に入り'),
+    CockTailList(key: UniqueKey(), isFavorite: false),
+    CockTailList(key: UniqueKey(), isFavorite: true),
     Text('バーテンダー'),
     Text('設定'),
   ];
