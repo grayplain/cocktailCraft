@@ -1,4 +1,6 @@
+import 'package:booy/IconData/cocktal_craft__a_v_b_icons.dart';
 import 'package:booy/View/CockTailList.dart';
+import 'package:booy/View/Settings.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -26,7 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
     CockTailList(key: UniqueKey(), isFavorite: false),
     CockTailList(key: UniqueKey(), isFavorite: true),
     Text('バーテンダー'),
-    Text('設定'),
+    Settings(),
   ];
 
   void _onItemTapped(int index) {
@@ -47,24 +49,24 @@ class _HomeScreenState extends State<HomeScreen> {
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.circle),
+            icon: Icon(CocktalCraft_AVB.glass),
             label: 'カクテル',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.circle),
+            icon: Icon(Icons.favorite_outline),
             label: 'お気に入り',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.circle),
+            icon: Icon(Icons.face_rounded),
             label: 'バーテンダー',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.circle),
+            icon: Icon(Icons.settings),
             label: '設定',
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.blue,
+        selectedItemColor: Colors.purple,
         unselectedItemColor: Colors.grey,
         onTap: _onItemTapped,
         type: BottomNavigationBarType.fixed,
