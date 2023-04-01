@@ -3,6 +3,8 @@ import 'package:booy/View/CockTailList.dart';
 import 'package:booy/View/Settings.dart';
 import 'package:flutter/material.dart';
 
+import 'View/Bartender.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -27,7 +29,7 @@ class _HomeScreenState extends State<HomeScreen> {
   static List<Widget> _widgetOptions = <Widget>[
     CockTailList(key: UniqueKey(), isFavorite: false),
     CockTailList(key: UniqueKey(), isFavorite: true),
-    Text('バーテンダー'),
+    ChatTwoPage(),
     Settings(),
   ];
 
