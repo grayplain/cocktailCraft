@@ -27,7 +27,7 @@ class _CockTailDetailSingleState extends State<CockTailDetailSingle> {
   @override
   void initState() {
     super.initState();
-    _myRecipes = Recipe.getSampleRecipe();
+    _myRecipes = Recipe.getRecipes(widget.cockTail.cocktailID);
     //cocktail.recipes に Recipe を追加する
     //追加する Recipe は、Recipe class にある、getSampleRecipe() を呼び出すことで取得できる
 

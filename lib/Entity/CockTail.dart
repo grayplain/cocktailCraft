@@ -44,9 +44,9 @@ class CockTail {
         'ジントニック',
         'ジンとトニックウォーターを混ぜたカクテル',
         [
-          Recipe(Drink.sampleHardDrink(), 60, "Unit.ml"),
-          Recipe(Drink.sampleSoftDrink(), 120, "Unit.ml"),
-          Recipe(Garnish.sampleGarish(), 1, "Unit.piece")
+          Recipe(Drink.sampleHardDrink(), "60", "Unit.ml"),
+          Recipe(Drink.sampleSoftDrink(), "120", "Unit.ml"),
+          Recipe(Garnish.sampleGarish(), "1", "Unit.piece")
         ],
         Drink.sampleHardDrink(),
         "skill",

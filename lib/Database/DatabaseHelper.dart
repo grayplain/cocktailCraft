@@ -12,6 +12,7 @@ class DatabaseHelper {
   static final drinkTable = 'Drink';
   static final cocktail_jp_Table = 'cocktail_jp';
   static final material_jp_Table = 'material_jp';
+  static final recipe_jp_Table = 'recipe_jp';
   static final favorite_Table = 'Favorite';
 
   // static final columnId = '_id';
@@ -83,6 +84,14 @@ class DatabaseHelper {
   Future<List<Map<String, dynamic>>> queryAllFavoriteRows() async {
     Database? db = await instance.database;
     return await db!.query(favorite_Table);
+  }
+
+  //DBからお気に入り情報を全て取得する
+  Future<List<Map<String, dynamic>>> queryRecipeRows(String cocktailID) async {
+    Database? db = await instance.database;
+    return db!.query(recipe_jp_Table,
+        where: "cocktailID=?",
+        whereArgs: [cocktailID]);
   }
 
   //DBからお気に入りのカクテル情報を取得する
