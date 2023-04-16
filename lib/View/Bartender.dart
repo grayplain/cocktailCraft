@@ -2,6 +2,7 @@
  * Author: Damodar Lohani
  * profile: https://github.com/lohanidamodar
   */
+import 'package:booy/API/AskBartenderAPI.dart';
 import 'package:flutter/material.dart';
 //timestamp.dart をimport する
 import 'package:booy/API/timestamp.dart';
@@ -18,20 +19,13 @@ class ChatTwoPage extends StatefulWidget {
 class _ChatTwoPageState extends State<ChatTwoPage> {
   String? text;
   TextEditingController? _controller;
+  late Widget _progressIndicator;
   final List<String> avatars = [
     "Bartender",
     "you",
   ];
   final List<Message> messages = [
-    // Message(0,
-    //     "But I may not go if the weather is bad. So lets see the weather condition 😀"),
-    // Message(0, "I suppose I am."),
-    // Message(1, "Are you going to market today?"),
-    // Message(0, "I am good too"),
-    // Message(1, "I am fine, thank you. How are you? "),
-    // Message(1, "Hi,"),
-    // Message(0, "How are you today?"),
-    // Message(0, "Hello,"),
+    Message(1, "いらっしゃいませ。今日はどうします？"),
   ];
   final rand = Random();
 
@@ -39,6 +33,7 @@ class _ChatTwoPageState extends State<ChatTwoPage> {
   void initState() {
     super.initState();
     _controller = TextEditingController();
+    _progressIndicator = Container();
   }
 
   @override
@@ -51,11 +46,16 @@ class _ChatTwoPageState extends State<ChatTwoPage> {
         children: <Widget>[
           SizedBox(height: 20),
           //images/Bartenderにある、Bartender_1.jpegを表示
-          Container(
-            height: 250,
-            child: Image.asset("images/Bartender/Bartender_1.jpeg"),
+          Column(
+            children: [
+              Container(
+                height: 250,
+                child: Image.asset("images/Bartender/Bartender_1.jpeg"),
+              ),
+              _progressIndicator,
+            ],
           ),
-          SizedBox(height: 20),
+          SizedBox(height: 10),
           Expanded(
             child: ListView.separated(
               physics: BouncingScrollPhysics(),
@@ -121,18 +121,21 @@ class _ChatTwoPageState extends State<ChatTwoPage> {
   _save() async {
     if (_controller!.text.isEmpty) return;
     FocusScope.of(context).requestFocus(FocusNode());
+    String userText = _controller!.text;
 
     setState(() {
-      messages.insert(0, Message(0, _controller!.text));
-      messages.insert(0, Message(1, "ふーむ..."));
       _controller!.clear();
+      messages.insert(0, Message(0, userText));
+      messages.insert(0, Message(1, "ふーむ..."));
+      _progressIndicator = CircularProgressIndicator();
     });
 
-    String hoge = await TimestampAPI().getTimestamp();
 
+    String response = await AskBartenderAPI().askBartender(userText);
     setState(() {
-      messages.insert(0, Message(1, hoge));
+      messages.insert(0, Message(1, response));
       _controller!.clear();
+      _progressIndicator = Container();
     });
   }
 
@@ -206,15 +209,10 @@ class _ChatTwoPageState extends State<ChatTwoPage> {
               SizedBox(
                 height: 2,
               ),
-              Text(
-                "2:02",
-                style: TextStyle(
-                    fontSize: 12, color: Colors.black.withOpacity(0.5)),
-              )
             ],
           ),
-        ),
-        SizedBox(width: current ? 20.0 : 30.0),
+        )
+        // SizedBox(width: current ? 20.0 : 30.0),
       ],
     );
   }
