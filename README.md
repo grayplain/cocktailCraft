@@ -14,4 +14,5 @@ ChatGPT および Github Copilot(以下生成AI)を組み合わせてどこま�
 動作動画：
 
 
-![demo]([https://user.images......gif](https://github.com/grayplain/cocktailCraft/assets/29807578/73ae08f5-8ef3-4451-b700-d356f0809904))
+https://github.com/grayplain/cocktailCraft/assets/29807578/6bb2cd5b-19b4-4d8f-bc74-7b029f64aab8
+
