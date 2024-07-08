@@ -1,14 +1,14 @@
-Github copilot テストを兼ねて、カクテルの一覧を表示するアプリを作って見る
+目的：
+ChatGPT および Github Copilot(以下生成AI)を組み合わせてどこまでスマホアプリを生成できるか検証。
 
-## Getting Started
+利用箇所：
+生成AIを利用する対象は下記の通り。
+・アプリの基盤および機能実装
+・カクテル画像およびバーテンダーの画像
+・カクテルの文章説明およびレシピ
+・バーテンダーとの対話 API を提供するサーバの構築
+・APIの設計および実装
 
-This project is a starting point for a Flutter application.
+平たく言うと、プロダクトに関連する大部分の要素を生成AIで出力したものを使用。
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+動作動画；
